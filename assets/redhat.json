@@ -1,0 +1,64 @@
+{ "frames": {
+   "1": {
+    "frame": { "x": 0, "y": 0, "w": 50, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 50, "h": 125 },
+    "sourceSize": { "w": 50, "h": 125 },
+    "duration": 100
+   },
+   "2": {
+    "frame": { "x": 50, "y": 0, "w": 50, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 50, "h": 125 },
+    "sourceSize": { "w": 50, "h": 125 },
+    "duration": 100
+   },
+   "3": {
+    "frame": { "x": 100, "y": 0, "w": 50, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 50, "h": 125 },
+    "sourceSize": { "w": 50, "h": 125 },
+    "duration": 100
+   },
+   "4": {
+    "frame": { "x": 150, "y": 0, "w": 50, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 50, "h": 125 },
+    "sourceSize": { "w": 50, "h": 125 },
+    "duration": 100
+   },
+   "5": {
+    "frame": { "x": 200, "y": 0, "w": 50, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 50, "h": 125 },
+    "sourceSize": { "w": 50, "h": 125 },
+    "duration": 100
+   },
+   "6": {
+    "frame": { "x": 250, "y": 0, "w": 50, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 50, "h": 125 },
+    "sourceSize": { "w": 50, "h": 125 },
+    "duration": 100
+   }
+ },
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.1.8-dev",
+  "image": "/home/furkan/Documents/projects/wildWest/assets/blue.png",
+  "format": "RGBA8888",
+  "size": { "w": 300, "h": 125 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "Layer", "opacity": 255, "blendMode": "normal" }
+  ]
+ }
+}

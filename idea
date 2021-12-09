@@ -1,0 +1,35 @@
+/**
+ready steady shot
+states using time events
+civils passing by
+thing that make bullet bounce back to you
+*/
+
+A target will be given, you must find and take him down
+Avoid shooting civilians
+Blocks make bullets bounce back to you
+
+Sunday:
+	#places npc's and target at random places on selected map
+	#can walk around and collide with blocks, same for npc's
+	#shows wanted sign on top corner
+Monday:
+	#Can shoot at npc's, bullets bounce back from blocks
+Tuesday:
+	#Code civils AI to wander around randomly
+Wednsday:
+	Code targets AI to fight back at ya
+Thursday:
+	Add timer for scoreboard
+
+Add more maps and stuff...
+
+walk with wasd or arrow keys aim and shoot with mouse pause with space and menu with esc
+
+
+#Either make bullet a circle-like shape or work with angles
+#Dont shoot when first clicked on player
+#Add shoot and reload sound effects
+#Type on screen when reloading and add a bullet counter
+Fix text displays and fix them apeearing late
+Fix npcs (espaccily horses) walking into buildings
