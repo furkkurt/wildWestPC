@@ -10,17 +10,17 @@ Avoid shooting civilians
 Blocks make bullets bounce back to you
 
 Sunday:
-	#places npc's and target at random places on selected map
-	#can walk around and collide with blocks, same for npc's
-	#shows wanted sign on top corner
+  #places npc's and target at random places on selected map
+  #can walk around and collide with blocks, same for npc's
+  #shows wanted sign on top corner
 Monday:
-	#Can shoot at npc's, bullets bounce back from blocks
+  #Can shoot at npc's, bullets bounce back from blocks
 Tuesday:
-	#Code civils AI to wander around randomly
+  #Code civils AI to wander around randomly
 Wednsday:
-	Code targets AI to fight back at ya
+  #Code targets AI to fight back at ya
 Thursday:
-	Add timer for scoreboard
+  #Add timer for scoreboard
 
 Add more maps and stuff...
 
@@ -31,5 +31,50 @@ walk with wasd or arrow keys aim and shoot with mouse pause with space and menu 
 #Dont shoot when first clicked on player
 #Add shoot and reload sound effects
 #Type on screen when reloading and add a bullet counter
-Fix text displays and fix them apeearing late
-Fix npcs (espaccily horses) walking into buildings
+Fix text displays and fix them appearing late
+?#Fix npcs (espaccily horses) walking into buildings
+#Move fighting out of update into it's own function
+#Target teleports instead of changing direction
+?#Fix multiple npcs spawning
+?#Fix enemies overlaping
+#Fix enemies runing away on collide with player
+#Enemy bullets dont bounce
+#Refresh bullet count after reload
+#First enemy bullet doesn't effect
+?#Sometimes enemy shoots when you draw although he isnt in sight
+#Can't shoot after dying and restarting
+?#Player collides with dead
+
++diffirent npc types
+  +ones to take you directly to him
+  +ones to attack when you ask
+hiding(?)
+entering houses(?)
+roll
+sprint
+jump
+stamina
++more visible bullets
++slower bullets
+
+
+revisioned
+open world
+  wander around enter taverns
+    play cards
+    bounty hunting quests
+  buy horses
+  target shootin
+  racing
+  duellos
+
+
+story
+  Avenge your father from Mad Hat Bran
+  bossfights
+    bandits chase after buying horse
+    duel after first bounty hunt
+    train scene after winning every mini-game
+    bridge after finishing all 3 scenes
+
+

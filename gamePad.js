@@ -54,7 +54,19 @@ class GamePad extends UIBlock{
       this.add(this.right);
       this.right.setDepth(999);
 			this.right.setScrollFactor(0);
-}
+      
+      this.dodge=this.scene.add.image(885,480,"dodgeico");
+			this.dodge.setScale(6);
+			this.dodge.alpha=.8;
+			this.dodge.setInteractive();
+      this.dodge.on("pointerdown", this.dodgePress.bind(this));
+      this.dodge.on("pointerup", this.dodgeRelease.bind(this));
+      this.dodge.on("pointerout", this.dodgeRelease.bind(this));
+      this.add(this.dodge);
+      this.dodge.setDepth(999);
+			this.dodge.setScrollFactor(0);    
+      this.dodge.setVisible(false);
+  }
 
   upPress(){
     this.up.alpha=.8; 
@@ -96,5 +108,13 @@ class GamePad extends UIBlock{
     this.right.alpha=.05
   };
 
+  dodgePress(){
+    this.emitter.emit("DODGE");
+    this.dodge.alpha =.9;
+  };
+
+  dodgeRelease(){
+    this.dodge.alpha = .8;
+  };  
 }
 

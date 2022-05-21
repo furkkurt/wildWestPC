@@ -22,6 +22,14 @@
     "spriteSourceSize": { "x": 0, "y": 0, "w": 190, "h": 195 },
     "sourceSize": { "w": 190, "h": 195 },
     "duration": 100
+   },
+   "4": {
+    "frame": { "x": 570, "y": 0, "w": 190, "h": 195 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 190, "h": 195 },
+    "sourceSize": { "w": 190, "h": 195 },
+    "duration": 100
    }
  },
  "meta": {
@@ -29,12 +37,12 @@
   "version": "1.1.8-dev",
   "image": "/home/furkan/Documents/projects/wildWest/assets/joehorse.png",
   "format": "RGBA8888",
-  "size": { "w": 570, "h": 195 },
+  "size": { "w": 760, "h": 195 },
   "scale": "1",
   "frameTags": [
   ],
   "layers": [
-   { "name": "Layer", "opacity": 255, "blendMode": "normal" }
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
   ]
  }
 }
