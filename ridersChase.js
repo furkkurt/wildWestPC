@@ -129,7 +129,7 @@ class ridersChase extends Phaser.Scene{
         this.time.addEvent({
           delay: 8000,
           callback:() =>{
-            localStorage.setItem("progress", 1);
+            localStorage.setItem("progress", parseInt(localStorage.getItem("progress"))+1);
             localStorage.setItem("location", "town");
             window.location.reload();
           }

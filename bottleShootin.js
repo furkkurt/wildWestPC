@@ -95,6 +95,7 @@ class bottleShootin extends Phaser.Scene{
                 this.time.addEvent({
                   delay: 2000,
                   callback:() =>{
+                    localStorage.setItem("bottleShooted", true);
                     localStorage.setItem("location", "town"); 
                     this.scene.start("town");
                   }

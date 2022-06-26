@@ -7,8 +7,17 @@ class town extends Phaser.Scene {
   };
   preload() {};
   create() {
-    if(localStorage.getItem("money") == undefined)
+    if(localStorage.getItem("progress") == undefined)
+      localStorage.setItem("progress", 0);
+    if(localStorage.getItem("progress") == 0 && localStorage.getItem("hasHorse") != undefined)
+      this.scene.start("ridersChase");
+    if(localStorage.getItem("progress") == 3 && localStorage.getItem("hasHorse") != undefined)
+      this.scene.start("bridge");
+
+    if(localStorage.getItem("money") == undefined){
       money = 0;
+      localStorage.setItem("money", money);
+    }
     else
       money = localStorage.getItem("money");
     if(localStorage.getItem("hasHorse") == undefined){
@@ -27,7 +36,7 @@ class town extends Phaser.Scene {
       speed = 500;
       horse = "White";
     }
-    this.moneyText = this.add.text(-120, -80, "Money: " + money, {color: "black", fontFamily: "litebulb", fontSize: "64px"}).setDepth(100).setScrollFactor(0);
+    this.moneyText = this.add.text(-120, -80, "Money: " + money, {color: "black", fontFamily: "litebulb", fontSize: "28px"}).setDepth(100).setScrollFactor(0);
     this.emitter = EventDispatcher.getInstance();
     this.gamePad = new GamePad({
       scene: this
@@ -42,7 +51,7 @@ class town extends Phaser.Scene {
     });  
     this.textBox = this.physics.add.sprite(540, 375, "quoteBox").setScale(12.2).setDepth(99).setScrollFactor(0).setInteractive().setVisible(false);
     this.textBox.alpha = .8;
-    this.text = this.add.text(175, 275, "", {fontFamily: "litebulb", color: "black", fontSize: "72px"}).setDepth(100).setScrollFactor(0).setInteractive();
+    this.text = this.add.text(175, 275, "", {fontFamily: "litebulb", color: "black", fontSize: "32px"}).setDepth(100).setScrollFactor(0).setInteractive();
     this.textBox.on("pointerdown", () => {
       if(localStorage.getItem("location") == "duello")
         window.location.reload();
@@ -249,13 +258,13 @@ class town extends Phaser.Scene {
       });
     }, null, this);
 
-    this.barnEnteranceText = this.add.text(4825, 5325, "Enter", {fontFamily: "litebulb", fontSize: "62px", color: "black"}).setVisible(false);
+    this.barnEnteranceText = this.add.text(4825, 5325, "Enter", {fontFamily: "litebulb", fontSize: "28px", color: "black"}).setVisible(false);
     this.barnEnterance = this.physics.add.sprite(4820,5250).setScale(3).setOrigin(0).setInteractive().setDepth(99);
     this.barnEnterance.on("pointerdown", () => {
       this.scene.start("barn");
     });
 
-    this.tavernEnteranceText = this.add.text(5735, 4695, "Enter", {fontFamily: "litebulb", fontSize: "62px", color: "black"}).setVisible(false);
+    this.tavernEnteranceText = this.add.text(5735, 4695, "Enter", {fontFamily: "litebulb", fontSize: "28px", color: "black"}).setVisible(false);
     this.tavernEnterance = this.physics.add.sprite(5730,4620).setScale(3).setOrigin(0).setInteractive().setDepth(99);
     this.tavernEnterance.on("pointerdown", () => {
       localStorage.setItem("location", "tavern");

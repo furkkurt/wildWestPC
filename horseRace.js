@@ -90,6 +90,7 @@ class horseRace extends Phaser.Scene{
       this.rival.play("joeHorseIdle");
       this.box = this.add.sprite(280, 325, "quoteBox").setScale(8).setOrigin(0).setInteractive().setDepth(4);
       this.text = this.add.text(300,340, "Darn! You got me! Here's your money \ndammit...", {fontFamily:"litebulb", color: "black", fontSize: "48px"}).setOrigin(0).setInteractive().setDepth(4);
+      localStorage.setItem("horseRaced", true);
       this.box.on("pointerdown", () => {localStorage.setItem("location", "town"); this.scene.start("town")});
       this.text.on("pointerdown", () => {localStorage.setItem("location", "town"); this.scene.start("town")});
     });

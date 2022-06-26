@@ -28,10 +28,50 @@ class barn extends Phaser.Scene{
         this.horse1.visible = this.horse1price.visible = true;
       }
     });
+    this.chase = false;
+    this.buy.on("pointerdown", () => {
+      if(this.horse1.visible == true && money >= 500){
+        if(localStorage.getItem("hasHorse") == undefined)
+          this.chase = true
+        money -= 500;
+        localStorage.setItem("money", money);
+        localStorage.setItem("hasHorse", "black");
+        localStorage.setItem("location", "town");
+        if(this.chase == true)
+          this.scene.start("preRidersChase");
+        else
+          this.scene.start("town");
+      }
+      else if(this.horse2.visible == true && money >= 1000){
+        if(localStorage.getItem("hasHorse") == undefined)
+          this.chase = true
+        money -= 1000;
+        localStorage.setItem("money", money);
+        localStorage.setItem("hasHorse", "brown");
+        localStorage.setItem("location", "town");
+        if(this.chase == true)
+          this.scene.start("preRidersChase");
+        else
+          this.scene.start("town");
+      }
+      else if(this.horse3.visible == true && money >= 2000){
+        if(localStorage.getItem("hasHorse") == undefined)
+          this.chase = true
+        money -= 500;
+        localStorage.setItem("money", money);
+        localStorage.setItem("hasHorse", "white");
+        localStorage.setItem("location", "town");
+        if(this.chase == true)
+          this.scene.start("preRidersChase");
+        else
+          this.scene.start("town");
+      }
+    });
+
     this.exit.on("pointerdown", () => {
       localStorage.setItem("location", "town");
       this.scene.start("town");
     })
-
+  
   }
 }

@@ -1,10 +1,50 @@
 { "frames": {
-   "blackHat.png": {
-    "frame": { "x": 0, "y": 0, "w": 300, "h": 125 },
+   "1": {
+    "frame": { "x": 0, "y": 0, "w": 50, "h": 125 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 300, "h": 125 },
-    "sourceSize": { "w": 300, "h": 125 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 50, "h": 125 },
+    "sourceSize": { "w": 50, "h": 125 },
+    "duration": 100
+   },
+   "2": {
+    "frame": { "x": 50, "y": 0, "w": 50, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 50, "h": 125 },
+    "sourceSize": { "w": 50, "h": 125 },
+    "duration": 100
+   },
+   "3": {
+    "frame": { "x": 100, "y": 0, "w": 50, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 50, "h": 125 },
+    "sourceSize": { "w": 50, "h": 125 },
+    "duration": 100
+   },
+   "4": {
+    "frame": { "x": 150, "y": 0, "w": 50, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 50, "h": 125 },
+    "sourceSize": { "w": 50, "h": 125 },
+    "duration": 100
+   },
+   "5": {
+    "frame": { "x": 200, "y": 0, "w": 50, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 50, "h": 125 },
+    "sourceSize": { "w": 50, "h": 125 },
+    "duration": 100
+   },
+   "6": {
+    "frame": { "x": 250, "y": 0, "w": 50, "h": 125 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 50, "h": 125 },
+    "sourceSize": { "w": 50, "h": 125 },
     "duration": 100
    }
  },
@@ -18,7 +58,7 @@
   "frameTags": [
   ],
   "layers": [
-   { "name": "Layer", "opacity": 255, "blendMode": "normal" }
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
   ]
  }
 }

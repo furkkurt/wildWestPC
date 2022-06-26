@@ -31,7 +31,7 @@ class map2 extends Phaser.Scene {
     });
     this.textBox = this.physics.add.sprite(540, 375, "quoteBox").setScale(12.2).setDepth(99).setScrollFactor(0).setInteractive().setVisible(false);
     this.textBox.alpha = .8;
-    this.text = this.add.text(175, 275, "", {fontFamily: "litebulb", color: "black", fontSize: "68px"}).setDepth(100).setScrollFactor(0).setInteractive();
+    this.text = this.add.text(175, 275, "", {fontFamily: "litebulb", color: "black", fontSize: "28px"}).setDepth(100).setScrollFactor(0).setInteractive();
     this.gamePad.dodge.setVisible(true);
     this.gamePad.x = 0;
     this.gamePad.y = 0;
@@ -58,8 +58,8 @@ class map2 extends Phaser.Scene {
     this.player.play("player"+horse+"Idle");
     this.player.body.setSize(this.player.width / 1.5, this.player.height / 2);
     this.player.setImmovable();
-    bulletText = this.add.text(-120, -60, "Bullets: " + bullets, {color: "black", fontFamily: "litebulb", fontSize: "64px"}).setDepth(100).setScrollFactor(0);
-    reloadingText = this.add.text(-120, -20, "Reloading", {fontFamily: "litebulb",color: "red", fontSize: "64px"}).setDepth(100).setScrollFactor(0).setVisible(false);
+    bulletText = this.add.text(-120, -60, "Bullets: " + bullets, {color: "black", fontFamily: "litebulb", fontSize: "28px"}).setDepth(100).setScrollFactor(0);
+    reloadingText = this.add.text(-120, -20, "Reloading", {fontFamily: "litebulb",color: "red", fontSize: "28px"}).setDepth(100).setScrollFactor(0).setVisible(false);
     bullet = this.physics.add.sprite(0, 0, "bullet").setScale(2.5).setDepth(2);
     this.cameras.main.startFollow(this.player);
     this.cameras.main.setZoom(.75);
@@ -96,8 +96,8 @@ class map2 extends Phaser.Scene {
       loop: true
     })
 		//Timer
-		this.timeText = this.add.text(bulletText.x + 920, bulletText.y + 170, "0 Seconds", {color: "black", fontFamily: "litebulb", fontSize:"48px"}).setDepth(999).setOrigin(0).setScrollFactor(0);
-    this.civilText = this.add.text(bulletText.x + 905, bulletText.y + 200, "0 Civilians Killed", {color: "black", fontFamily: "litebulb", fontSize:"48px"}).setDepth(999).setOrigin(0).setScrollFactor(0);
+		this.timeText = this.add.text(bulletText.x + 920, bulletText.y + 170, "0 Seconds", {color: "black", fontFamily: "litebulb", fontSize:"21px"}).setDepth(999).setOrigin(0).setScrollFactor(0);
+    this.civilText = this.add.text(bulletText.x + 905, bulletText.y + 200, "0 Civilians Killed", {color: "black", fontFamily: "litebulb", fontSize:"21px"}).setDepth(999).setOrigin(0).setScrollFactor(0);
 		this.time.addEvent({delay: 1000,
 			callback: () => {
 				seconds += 1;
@@ -515,6 +515,10 @@ class map2 extends Phaser.Scene {
             this.newMoney = parseInt(parseInt(localStorage.getItem("money")) + 10);
             localStorage.setItem("money",this.newMoney);
 				};
+        if(localStorage.getItem("bountyHunted") == false){
+          localStorage.setItem("bountyHunted", true);
+          this.scene.start("duelBoss");
+        }
 				this.scene.start("scoreboard");
       });
       bullet.setBounce(1);
@@ -533,7 +537,7 @@ class map2 extends Phaser.Scene {
       fired = true;
       bullets = bullets - 1;
       bulletText.destroy();
-      bulletText = this.add.text(-120, -60, "Bullets: " + bullets, {color: "black", fontFamily: "litebulb", fontSize: "32px"}).setDepth(100).setScrollFactor(0);
+      bulletText = this.add.text(-120, -60, "Bullets: " + bullets, {color: "black", fontFamily: "litebulb", fontSize: "14px"}).setDepth(100).setScrollFactor(0);
       if (bullets >= 1) {
         this.sound.play("shoot", {
           volume: .1
@@ -556,7 +560,7 @@ class map2 extends Phaser.Scene {
             fired = false;
             reloadingText.setVisible(false)
 						bulletText.destroy();
-            bulletText = this.add.text(-120, -60, "Bullets: " + bullets, {color: "black", fontFamily: "litebulb", fontSize: "32px"}).setDepth(100).setScrollFactor(0);
+            bulletText = this.add.text(-120, -60, "Bullets: " + bullets, {color: "black", fontFamily: "litebulb", fontSize: "14px"}).setDepth(100).setScrollFactor(0);
 					}
         })
       }
