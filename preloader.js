@@ -36,6 +36,7 @@ class preloader extends Phaser.Scene {
 		this.load.tilemapTiledJSON("tavern", "assets/tavern.json");
 		this.load.tilemapTiledJSON("home", "assets/house.json");
 		this.load.image("barn", "assets/barn.png");
+		this.load.image("nightBarn", "assets/nightBarn.png");
 		this.load.image("blackHorse", "assets/blackHorse.png");
 		this.load.image("brownHorse", "assets/brownHorse.png");
 		this.load.image("whiteHorse", "assets/whiteHorse.png");
@@ -44,6 +45,7 @@ class preloader extends Phaser.Scene {
 		this.load.image("race3", "assets/rocky-nowater-far.png");
 		this.load.image("race2", "assets/rocky-nowater-mid.png");
 		this.load.image("sky", "assets/sky.png");
+		this.load.image("nightSky", "assets/nightSky.png");
 		this.load.atlas("bottle", "assets/beer.png", "assets/beer.json");
 		this.load.image("barrel", "assets/barrel.png");
 		this.load.image("duello", "assets/duello.png");
@@ -131,6 +133,14 @@ class preloader extends Phaser.Scene {
 		this.load.audio("branUnderstand", "assets/audio/bran/understand.mp3");
 		this.load.audio("branListen", "assets/audio/bran/listentome.mp3");
 		this.load.image("bed", "assets/bed.png");
+		this.load.image("trainEmpty", "assets/train/Empty.png");
+		this.load.image("trainEngine", "assets/train/Engine.png");
+		this.load.image("trainCoal", "assets/train/Coal.png");
+		this.load.image("trainLogs", "assets/train/Logs.png");
+		this.load.image("trainCaboose", "assets/train/Caboose.png");
+		this.load.image("track", "assets/train/track.png");
+		this.load.audio("train", "assets/audio/train.mp3");
+		this.load.audio("crickets", "assets/audio/crickets.mp3");
 		//new guys
 		this.load.atlas("blackHat", "assets/blackHat.png", "assets/blackHat.json");
 		this.load.atlas("greenGuy", "assets/greenGuy.png", "assets/greenGuy.json");
@@ -144,6 +154,7 @@ class preloader extends Phaser.Scene {
 		this.load.atlas("mom", "assets/mom.png", "assets/mom.json");
 		this.load.image("momOld", "assets/momOld.png");
 		this.load.atlas("manco", "assets/manco.png", "assets/manco.json");
+		this.load.atlas("blondie", "assets/blondie.png", "assets/blondie.json");
 	};
 	create(){
 		this.anims.create({key:"playerIdle", frameRate:1,frames:[{key:"player",frame:"1"}],repeat:0});
@@ -164,6 +175,7 @@ class preloader extends Phaser.Scene {
 		this.anims.create({key:"momIdle", frameRate: 1, frames:[{key:"mom",frame:"1"}],repeat:0});
 		this.anims.create({key:"branIdle", frameRate: 1, frames:[{key:"bran",frame:"1"}],repeat:0});
 		this.anims.create({key:"mancoIdle", frameRate:1,frames:[{key:"manco",frame:"1"}],repeat:0});
+		this.anims.create({key:"blondieIdle", frameRate:1,frames:[{key:"blondie",frame:"1"}],repeat:0});
 
 		this.anims.create({key:"playerShoot", frameRate:1,frames:[{key:"player",frame:"6"}],repeat:0});
 		this.anims.create({key:"bloodJoeShoot", frameRate:1,frames:[{key:"bloodJoe",frame:"6"}],repeat:0});
@@ -179,6 +191,7 @@ class preloader extends Phaser.Scene {
 		this.anims.create({key:"fatherShoot", frameRate:1,frames:[{key:"father",frame:"6"}],repeat:0});
 		this.anims.create({key:"branShoot", frameRate:1,frames:[{key:"bran",frame:"6"}],repeat:0});
 		this.anims.create({key:"mancoShoot", frameRate:1,frames:[{key:"manco",frame:"2"}],repeat:0});
+		this.anims.create({key:"blondieShoot", frameRate:1,frames:[{key:"blondie",frame:"2"}],repeat:0});
 
 		this.anims.create({key:"bottleBreak", frameRate: 8, frames:[{key:"bottle", frame:"1"}, {key:"bottle", frame:"2"}, {key:"bottle", frame:"3"}, {key:"bottle", frame:"4"}]})
 
@@ -217,7 +230,13 @@ class preloader extends Phaser.Scene {
 			frameRate: 8,
 			frames: [{key:"bran",frame:"2"},{key:"bran",frame:"3"},{key:"bran",frame:"4"},{key:"bran",frame:"5"}],
 			repeat: -1 
-		})
+		});		
+		this.anims.create({
+			key: "blondieWalk",
+			frameRate: 8,
+			frames: [{key:"blondie",frame:"2"},{key:"blondie",frame:"3"},{key:"blondie",frame:"4"},{key:"blondie",frame:"5"}],
+			repeat: -1 
+		});
 		this.anims.create({
 			key: "bloodJoeWalk",
 			frameRate: 8,
@@ -284,6 +303,19 @@ class preloader extends Phaser.Scene {
 			frames: [{key:"darkishHorse",frame:"2"},{key:"darkishHorse",frame:"3"}],
 			repeat: -1
 		});
+
+		this.anims.create({
+			key: "blondiePunch",
+			frameRate: 2,
+			frames: [{key:"blondie",frame:"7"},{key:"blondie",frame:"8"}],
+			repeat: 0
+		});
+		this.anims.create({
+			key: "playerPunch",
+			frameRate: 2,
+			frames: [{key:"player",frame:"7"},{key:"player",frame:"8"}],
+			repeat: 0
+			});
 		/*
 		if(localStorage.getItem("location") == "map1")
 			this.scene.start("map1");
@@ -306,6 +338,6 @@ class preloader extends Phaser.Scene {
 		else
 			this.scene.start("prologue");
 			*/
-		this.scene.start("preRidersChase");
+		this.scene.start("seqTrain");
 	}
 }

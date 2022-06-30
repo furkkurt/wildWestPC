@@ -11,7 +11,7 @@ var config = {
       debug: false
     }
   },
-  scene: [preloader, town, horseRace, bottleShootin, duello, tavern, blackjack, barn, mapSelector, map1, map2, scoreboard, preRidersChase, ridersChase, mancoDuel, train, prologue, prologue2, prologue3, prologue4],
+  scene: [preloader, town, horseRace, bottleShootin, duello, tavern, blackjack, barn, mapSelector, map1, map2, scoreboard, preRidersChase, ridersChase, mancoDuel, preTrain, preTrain2, train, seqTrain, preBridge, bridge, prologue, prologue2, prologue3, prologue4],
   pixelArt: true
 };
 

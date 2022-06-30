@@ -11,5 +11,6 @@ class scoreboard extends Phaser.Scene {
 		this.backToMapSelector = this.add.text(250, 210, "Back to town", {color: "black", fontFamily:"litebulb", fontSize:"90px"});
 		this.backToMapSelector.setInteractive();
 		this.backToMapSelector.on("pointerdown", () => {localStorage.setItem("location", "town"); window.location.reload()});
+		localStorage.setItem("bountyHunted", true)
 	};
 }

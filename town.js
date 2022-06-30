@@ -13,6 +13,8 @@ class town extends Phaser.Scene {
       this.scene.start("ridersChase");
     if(localStorage.getItem("progress") == 3 && localStorage.getItem("hasHorse") != undefined)
       this.scene.start("bridge");
+    if((localStorage.getItem("duelled") && localStorage.getItem("bottleShooted")) && (localStorage.getItem("horseRaced") && localStorage.getItem("bountyHunted")))
+      this.scene.start("preTrain");
 
     if(localStorage.getItem("money") == undefined){
       money = 0;
