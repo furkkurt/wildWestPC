@@ -112,6 +112,8 @@ class preloader extends Phaser.Scene {
 		this.load.image("house", "assets/house.png");
 		this.load.image("blackFilter", "assets/blackFilter.png");
 		this.load.atlas("bran", "assets/madHat.png", "assets/madHat.json");
+		this.load.atlas("branPunch", "assets/branPunch.png", "assets/branPunch.json");
+		this.load.atlas("branVest", "assets/madHatVest.png", "assets/madHatVest.json");
 		this.load.image("title", "assets/title.png");
 		this.load.audio("swosh", "assets/audio/swosh.mp3");
 		this.load.audio("doorKick", "assets/audio/doorKick.mp3");
@@ -141,6 +143,8 @@ class preloader extends Phaser.Scene {
 		this.load.image("track", "assets/train/track.png");
 		this.load.audio("train", "assets/audio/train.mp3");
 		this.load.audio("crickets", "assets/audio/crickets.mp3");
+		this.load.image("dirt", "assets/dirt.png");
+		this.load.image("bridge", "assets/bridge.png");
 		//new guys
 		this.load.atlas("blackHat", "assets/blackHat.png", "assets/blackHat.json");
 		this.load.atlas("greenGuy", "assets/greenGuy.png", "assets/greenGuy.json");
@@ -174,6 +178,7 @@ class preloader extends Phaser.Scene {
 		this.anims.create({key:"darkishHorseIdle", frameRate: 1, frames:[{key:"darkishHorse",frame:"1"}],repeat:0});
 		this.anims.create({key:"momIdle", frameRate: 1, frames:[{key:"mom",frame:"1"}],repeat:0});
 		this.anims.create({key:"branIdle", frameRate: 1, frames:[{key:"bran",frame:"1"}],repeat:0});
+		this.anims.create({key:"branVestIdle", frameRate: 1, frames:[{key:"bran",frame:"1"}],repeat:0});
 		this.anims.create({key:"mancoIdle", frameRate:1,frames:[{key:"manco",frame:"1"}],repeat:0});
 		this.anims.create({key:"blondieIdle", frameRate:1,frames:[{key:"blondie",frame:"1"}],repeat:0});
 
@@ -190,6 +195,8 @@ class preloader extends Phaser.Scene {
 		this.anims.create({key:"playerYouthShoot", frameRate:1,frames:[{key:"playerYouth",frame:"6"}],repeat:0});
 		this.anims.create({key:"fatherShoot", frameRate:1,frames:[{key:"father",frame:"6"}],repeat:0});
 		this.anims.create({key:"branShoot", frameRate:1,frames:[{key:"bran",frame:"6"}],repeat:0});
+		this.anims.create({key:"branHang", frameRate:1,frames:[{key:"branPunch",frame:"1"}],repeat:0});
+		this.anims.create({key:"branVestShoot", frameRate:1,frames:[{key:"bran",frame:"6"}],repeat:0});
 		this.anims.create({key:"mancoShoot", frameRate:1,frames:[{key:"manco",frame:"2"}],repeat:0});
 		this.anims.create({key:"blondieShoot", frameRate:1,frames:[{key:"blondie",frame:"2"}],repeat:0});
 
@@ -227,6 +234,12 @@ class preloader extends Phaser.Scene {
 		});
 		this.anims.create({
 			key: "branWalk",
+			frameRate: 8,
+			frames: [{key:"bran",frame:"2"},{key:"bran",frame:"3"},{key:"bran",frame:"4"},{key:"bran",frame:"5"}],
+			repeat: -1 
+		});		
+		this.anims.create({
+			key: "branVestWalk",
 			frameRate: 8,
 			frames: [{key:"bran",frame:"2"},{key:"bran",frame:"3"},{key:"bran",frame:"4"},{key:"bran",frame:"5"}],
 			repeat: -1 
@@ -315,7 +328,13 @@ class preloader extends Phaser.Scene {
 			frameRate: 2,
 			frames: [{key:"player",frame:"7"},{key:"player",frame:"8"}],
 			repeat: 0
-			});
+			});		
+		this.anims.create({
+			key: "branPunch",
+			frameRate: 2,
+			frames: [{key:"branPunch",frame:"1"},{key:"branPunch",frame:"2"}],
+			repeat: 0
+		});
 		/*
 		if(localStorage.getItem("location") == "map1")
 			this.scene.start("map1");
@@ -338,6 +357,6 @@ class preloader extends Phaser.Scene {
 		else
 			this.scene.start("prologue");
 			*/
-		this.scene.start("seqTrain");
+		this.scene.start("bridge3");
 	}
 }
