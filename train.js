@@ -116,12 +116,16 @@ class train extends Phaser.Scene{
     })
 
     this.emitter = EventDispatcher.getInstance();
-    this.gamePad = new GamePad({scene: this});
-    this.gamePad.x = 125;
-    this.gamePad.y = -50;
-    this.setListeners();
     //for blondie
     this.jumped = false;
+    
+    this.input.keyboard.on('keydown-A', this.left.bind(this));
+    this.input.keyboard.on('keyup-A', this.release.bind(this));
+    this.input.keyboard.on('keydown-D', this.right.bind(this));
+    this.input.keyboard.on('keyup-D', this.release.bind(this));
+    this.input.keyboard.on('keydown-W', this.up.bind(this));
+    this.input.keyboard.on('keyup-W', this.release.bind(this));
+
   }
   update(){
     this.filter.x = this.player.x;
@@ -151,13 +155,6 @@ class train extends Phaser.Scene{
       })
     }
   }
-  setListeners() {
-    this.emitter.on("UP", this.up.bind(this));
-    this.emitter.on("LEFT", this.left.bind(this));
-    this.emitter.on("RIGHT", this.right.bind(this));
-    this.emitter.on("RELEASE", this.release.bind(this));
-    this.emitter.on("RELEASE", this.release.bind(this));
-  };
   up(){
     if(this.player.body.onFloor())
       this.player.setVelocityY(-750);

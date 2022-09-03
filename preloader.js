@@ -352,7 +352,7 @@ class preloader extends Phaser.Scene {
 			frames: [{key:"branPunch",frame:"1"},{key:"branPunch",frame:"2"}],
 			repeat: 0
 		});
-		/*
+		
 		if(localStorage.getItem("location") == "map1")
 			this.scene.start("map1");
 		else if(localStorage.getItem("location") == "map2")
@@ -379,7 +379,7 @@ class preloader extends Phaser.Scene {
 			this.scene.start("train");
 		else if(localStorage.getItem("location") == "bridge")
 			this.scene.start("seqTrain");
-		else*/
-			this.scene.start("bridge2");
+		else
+			this.scene.start("town");
 	}
 }

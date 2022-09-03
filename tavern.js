@@ -7,12 +7,6 @@ class tavern extends Phaser.Scene {
   create() {
     money = parseInt(localStorage.getItem("money"));
     this.emitter = EventDispatcher.getInstance();
-    this.gamePad = new GamePad({
-      scene: this
-    });
-    this.gamePad.x = 0;
-    this.gamePad.y = 0;
-    this.setListeners();
     this.sound.stopAll();
     this.sound.play("Tequila", {
       loop: true,
@@ -145,17 +139,20 @@ class tavern extends Phaser.Scene {
       this.text.on("pointerdown", () => {localStorage.setItem("location", map); window.location.reload()});      
       this.textBox.on("pointerdown", () => {localStorage.setItem("location", map); window.location.reload()});      
     };
+    this.input.keyboard.on('keydown-A', this.left.bind(this));
+    this.input.keyboard.on('keyup-A', this.release.bind(this));
+    this.input.keyboard.on('keydown-D', this.right.bind(this));
+    this.input.keyboard.on('keyup-D', this.release.bind(this));
+    this.input.keyboard.on('keydown-W', this.up.bind(this));
+    this.input.keyboard.on('keyup-W', this.release.bind(this));
+    this.input.keyboard.on('keydown-S', this.down.bind(this));
+    this.input.keyboard.on('keyup-S', this.release.bind(this));
+
   };
 
   update() {
+
   }
-  setListeners() {
-    this.emitter.on("UP", this.up.bind(this));
-    this.emitter.on("DOWN", this.down.bind(this));
-    this.emitter.on("LEFT", this.left.bind(this));
-    this.emitter.on("RIGHT", this.right.bind(this));
-    this.emitter.on("RELEASE", this.release.bind(this));
-  };
   up() {
     gunDrawn = false;
     this.player.play("playerWalk");

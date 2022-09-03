@@ -143,16 +143,9 @@ class ridersChase extends Phaser.Scene{
       }
     })
 
-    this.emitter = EventDispatcher.getInstance();
-    this.gamePad = new GamePad({scene: this});
-    this.gamePad.x = 125;
-    this.gamePad.y = -50;
-    this.setListeners();
+    this.input.keyboard.on('keydown-W', this.up.bind(this));
+    this.input.keyboard.on('keydown-S', this.down.bind(this));
   }
-  setListeners() {
-    this.emitter.on("UP", this.up.bind(this));
-    this.emitter.on("DOWN", this.down.bind(this));
-  };
   up(){
     if(this.player.y == 225)
       this.player.y = 150

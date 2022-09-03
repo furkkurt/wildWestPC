@@ -40,12 +40,6 @@ class town extends Phaser.Scene {
     }
     this.moneyText = this.add.text(-120, -70, "Money: " + money, {color: "black", fontFamily: "litebulb", fontSize: "28px"}).setDepth(100).setScrollFactor(0);
     this.emitter = EventDispatcher.getInstance();
-    this.gamePad = new GamePad({
-      scene: this
-    });
-    this.gamePad.x = 0;
-    this.gamePad.y = 0;
-    this.setListeners();
     this.sound.stopAll();
     this.sound.play("Tequila", {
       loop: true,
@@ -274,6 +268,16 @@ class town extends Phaser.Scene {
       localStorage.setItem("location", "tavern");
       window.location.reload();
     });
+
+    this.input.keyboard.on('keydown-A', this.left.bind(this));
+    this.input.keyboard.on('keyup-A', this.release.bind(this));
+    this.input.keyboard.on('keydown-D', this.right.bind(this));
+    this.input.keyboard.on('keyup-D', this.release.bind(this));
+    this.input.keyboard.on('keydown-W', this.up.bind(this));
+    this.input.keyboard.on('keyup-W', this.release.bind(this));
+    this.input.keyboard.on('keydown-S', this.down.bind(this));
+    this.input.keyboard.on('keyup-S', this.release.bind(this));
+    this.input.keyboard.on('keydown-SPACE', this.dodge.bind(this));
   };
 
   update() {
@@ -296,14 +300,6 @@ class town extends Phaser.Scene {
     else
       this.barnEnteranceText.setVisible(false);
   }
-  setListeners() {
-    this.emitter.on("UP", this.up.bind(this));
-    this.emitter.on("DOWN", this.down.bind(this));
-    this.emitter.on("LEFT", this.left.bind(this));
-    this.emitter.on("RIGHT", this.right.bind(this));
-    this.emitter.on("RELEASE", this.release.bind(this));
-    this.emitter.on("DODGE", this.dodge.bind(this));
-  };
   up() {
     gunDrawn = false;
     this.player.play("player"+horse+"Walk");

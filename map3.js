@@ -26,16 +26,9 @@ class map3 extends Phaser.Scene {
     fired = false;
     mouse = this.input.activePointer;
     this.emitter = EventDispatcher.getInstance();
-    this.gamePad = new GamePad({
-      scene: this
-    });
     this.textBox = this.physics.add.sprite(540, 375, "quoteBox").setScale(12.2).setDepth(99).setScrollFactor(0).setInteractive().setVisible(false);
     this.textBox.alpha = .8;
     this.text = this.add.text(175, 275, "", {fontFamily: "litebulb", color: "black", fontSize: "28px"}).setDepth(100).setScrollFactor(0).setInteractive();
-    this.gamePad.dodge.setVisible(true);
-    this.gamePad.x = 0;
-    this.gamePad.y = 0;
-    this.setListeners();
     this.sound.stopAll();
     this.sound.play("Tequila", {
       loop: true,
@@ -418,7 +411,17 @@ class map3 extends Phaser.Scene {
         loop: true
       });
     }, null, this);
-  };
+      this.input.keyboard.on('keydown-A', this.left.bind(this));
+    this.input.keyboard.on('keyup-A', this.release.bind(this));
+    this.input.keyboard.on('keydown-D', this.right.bind(this));
+    this.input.keyboard.on('keyup-D', this.release.bind(this));
+    this.input.keyboard.on('keydown-W', this.up.bind(this));
+    this.input.keyboard.on('keyup-W', this.release.bind(this));
+    this.input.keyboard.on('keydown-S', this.down.bind(this));
+    this.input.keyboard.on('keyup-S', this.release.bind(this));
+    this.input.keyboard.on('keydown-SPACE', this.dodge.bind(this));
+
+};
   update() {
     if (this.player.x < 15 * 70)
       this.player.x = 115 * 70;
@@ -635,14 +638,6 @@ class map3 extends Phaser.Scene {
       loop: true
     });
   }
-  setListeners() {
-    this.emitter.on("UP", this.up.bind(this));
-    this.emitter.on("DOWN", this.down.bind(this));
-    this.emitter.on("LEFT", this.left.bind(this));
-    this.emitter.on("RIGHT", this.right.bind(this));
-    this.emitter.on("RELEASE", this.release.bind(this));
-    this.emitter.on("DODGE", this.dodge.bind(this));
-  };
   up() {
     gunDrawn = false;
     this.player.play("player"+horse+"Walk");
