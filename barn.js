@@ -69,6 +69,7 @@ class barn extends Phaser.Scene{
     });
 
     this.exit.on("pointerdown", () => {
+      this.sound.play("doorOpen");
       localStorage.setItem("location", "town");
       this.scene.start("town");
     })

@@ -50,7 +50,7 @@ class map1 extends Phaser.Scene {
     });
     this.textBox = this.physics.add.sprite(540, 375, "quoteBox").setScale(12.2).setDepth(99).setScrollFactor(0).setInteractive().setVisible(false);
     this.textBox.alpha = .8;
-    this.text = this.add.text(175, 275, "", {fontFamily: "litebulb", color: "black", fontSize: "32px"}).setDepth(100).setScrollFactor(0).setInteractive();
+    this.text = this.add.text(175, 290, "", {fontFamily: "litebulb", color: "black", fontSize: "30px"}).setDepth(100).setScrollFactor(0).setInteractive();
     this.gamePad.dodge.setVisible(true);
     this.gamePad.x = 0;
     this.gamePad.y = 0;
@@ -305,8 +305,9 @@ class map1 extends Phaser.Scene {
         this.npcInBorder.paused = true;
         npcSprite.setVisible(false);
         npcSprite.setActive(false);
-			  npcSprite.x = 99999;
-			  npcSprite.y = 99999;
+        npcSprite.destroy();
+			  //npcSprite.x = -99999;
+			  //npcSprite.y = 99999;
 			  civilianKills += 1;
       }, null, this);
       this.time.addEvent({

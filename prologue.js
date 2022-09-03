@@ -3,6 +3,11 @@ class prologue extends Phaser.Scene{
     super("prologue")
   }
   create(){
+    this.skip = this.add.text(710, 10, "SKIP", {fontFamily: "litebulb", color: "black", fontSize: "28px"}).setDepth(999).setInteractive();
+    this.skip.on("pointerdown", ()=>{
+      localStorage.setItem("location", "town");
+      this.scene.start("boot");
+    })
     this.sound.stopAll();
     this.sound.play("Tequila", {
       loop: true,
@@ -65,7 +70,7 @@ class prologue extends Phaser.Scene{
     }
     this.textBox = this.physics.add.sprite(230, 350, "quoteBox").setScale(7).setDepth(101).setScrollFactor(0).setVisible(false);
     this.textBox.alpha = .8;
-    this.text = this.add.text(25, 282, "", {fontFamily: "litebulb", color: "black", fontSize: "21px"}).setDepth(102).setScrollFactor(0);
+    this.text = this.add.text(25, 310, "", {fontFamily: "litebulb", color: "black", fontSize: "21px"}).setDepth(102).setScrollFactor(0);
 
     //father shoots
     this.father = this.physics.add.sprite(600,320,"father").setDepth(100).setScale(1.4);

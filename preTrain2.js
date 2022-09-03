@@ -3,6 +3,15 @@ class preTrain2 extends Phaser.Scene{
     super("preTrain2")
   }
   create(){
+    this.filter1 = this.add.sprite(0,0,"blackFilter").setScale(999).setDepth(999).setScrollFactor(0);
+    this.filter1.alpha = 1;
+    this.time.addEvent({
+      delay: 50,
+      callback:() =>{
+        this.filter1.alpha -= .01;
+      },repeat: 100
+    });
+    
     this.sound.stopAll();
     this.sound.play("train", {loop: true});
     const sky = this.add.tileSprite(0,-50,5000,300,"nightSky").setOrigin(0).setScale(.4).setScrollFactor(0).setDepth(2);
@@ -61,12 +70,19 @@ class preTrain2 extends Phaser.Scene{
       }, loop: true
     })
     
-    this.textBox = this.physics.add.sprite(275, 375, "quoteBox").setScale(8).setDepth(999).setScrollFactor(0)
+    this.textBox = this.physics.add.sprite(275, 375, "quoteBox").setScale(8).setDepth(999).setScrollFactor(0).setVisible(false);
     this.textBox.alpha = .8;
-    this.text = this.add.text(20, 350, "Hey Cowboy! Heard you're heading to Barnacle Town\nto face Bran, well you must cross his brother first!\nI'm gonna crush you now!", {fontFamily: "litebulb", color: "black", fontSize: "19px"}).setDepth(999).setScrollFactor(0);
+    this.text = this.add.text(20, 350, "Hey Cowboy! Heard you're heading to Barnacle Town\nto face Bran, well you must cross his brother first!\nI'm gonna crush you now!", {fontFamily: "litebulb", color: "black", fontSize: "19px"}).setDepth(999).setScrollFactor(0).setVisible(false);
 
     this.time.addEvent({
-      delay: 8000,
+      delay: 3000,
+      callback:() =>{
+        this.textBox.visible = this.text.visible = true;
+        this.sound.play("branGoing", {volume:3});
+      }
+    })
+    this.time.addEvent({
+      delay: 10000,
       callback:() =>{
         this.scene.start("train");
       }

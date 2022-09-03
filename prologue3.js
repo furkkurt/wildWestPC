@@ -48,7 +48,7 @@ class prologue3 extends Phaser.Scene {
     
     this.textBox = this.physics.add.sprite(650, 440, "quoteBox").setScale(9).setDepth(101).setScrollFactor(0).setVisible(false);
     this.textBox.alpha = .8;
-    this.text = this.add.text(380, 360, "", {fontFamily: "litebulb", color: "black", fontSize: "23px"}).setDepth(102).setScrollFactor(0);
+    this.text = this.add.text(380, 380, "", {fontFamily: "litebulb", color: "black", fontSize: "23px"}).setDepth(102).setScrollFactor(0);
     this.time.addEvent({
       delay: 2000,
       callback:() =>{

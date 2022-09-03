@@ -3,6 +3,7 @@ class bridge1 extends Phaser.Scene{
     super("bridge1")
   }
   create(){
+    localStorage.setItem("location", "bridge");
     const sky = this.add.tileSprite(0,0,5000,300,"sky").setOrigin(0).setScale(.7).setScrollFactor(0).setDepth(2);
     const bg = this.add.tileSprite(0,125,6000,1000,"race4").setOrigin(0).setScale(.2).setScrollFactor(0).setDepth(2);
     const far = this.add.tileSprite(0,125,9999,1000,"race3").setOrigin(0).setScale(.2).setScrollFactor(0).setDepth(2);
@@ -67,7 +68,6 @@ class bridge1 extends Phaser.Scene{
           this.delayCounter.paused = true;
           if(this.delay > this.rivalDelay){
             //die
-            localStorage.clear();
             this.lost = this.add.text(300,-30,"You lost.", {fontFamily: "litebulb", fontSize: "96px", color: "black"});
             this.time.addEvent({delay: 1000,callback:() =>{this.player.setRotation(1.57); this.player.x+=140; this.player.y += 90; this.player.play("playerIdle")}});
             this.time.addEvent({
@@ -94,7 +94,7 @@ class bridge1 extends Phaser.Scene{
                       }, repeat: 100
                     });
                     this.shoot.setVisible(true);
-                    this.shoot.on("pointerdown", () => {window.location.reload()});
+                    this.shoot.on("pointerdown", () => {this.scene.start("bridge1")});
                   }
                 })
               }
@@ -143,7 +143,6 @@ class bridge1 extends Phaser.Scene{
             this.shoot.setVisible(false);
             this.add.text(300,-30,"Tie.", {fontFamily: "litebulb", fontSize: "96px", color: "black"}); 
             
-            localStorage.clear();
             this.time.addEvent({delay: 1000,callback:() =>{this.player.setRotation(1.57); this.player.x+=140; this.player.y += 90; this.player.play("playerIdle")}});
             this.time.addEvent({
               delay: 2000,
@@ -173,12 +172,12 @@ class bridge1 extends Phaser.Scene{
               }
             })
             this.time.addEvent({delay: 1000,callback:() =>{this.enemy.setRotation(-1.57); this.enemy.x-=50; this.enemy.y +=50; this.enemy.play("branIdle")}});
-            this.filter2 = this.add.sprite(150,420,"redFilter").setOrigin(0).setDepth(99);
+            this.filter2 = this.add.sprite(200,250,"redFilter").setOrigin(0).setDepth(99);
             this.filter2.alpha = 0;
             this.time.addEvent({
               delay: 2000,
               callback:() =>{
-                this.filter2 = this.add.sprite(625,410,"redFilter").setOrigin(0).setDepth(99);
+                this.filter2 = this.add.sprite(625,310,"redFilter").setOrigin(0).setDepth(99);
                 this.filter2.alpha = 0;
                 this.time.addEvent({
                   delay: 50,
@@ -199,7 +198,7 @@ class bridge1 extends Phaser.Scene{
                       }, repeat: 100
                     });
                     this.shoot.setVisible(true);
-                    this.shoot.on("pointerdown", () => {console.log("asd");window.location.reload()});
+                    this.shoot.on("pointerdown", () => {this.scene.start("bridge1")});
                   }
                 })
               }

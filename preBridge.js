@@ -3,6 +3,15 @@ class preBridge extends Phaser.Scene{
     super("preBridge")
   }
   create(){
+    this.sound.play("Spagetti");
+    this.filter1 = this.add.sprite(0,0,"blackFilter").setScale(999).setDepth(999).setScrollFactor(0);
+    this.filter1.alpha = 1;
+    this.time.addEvent({
+      delay: 50,
+      callback:() =>{
+        this.filter1.alpha -= .01;
+      },repeat: 100
+    });
     const sky = this.add.tileSprite(0,0,5000,300,"sky").setOrigin(0).setScale(.7).setScrollFactor(0).setDepth(2);
     const bg = this.add.tileSprite(0,125,6000,1000,"race4").setOrigin(0).setScale(.2).setScrollFactor(0).setDepth(2);
     const far = this.add.tileSprite(0,125,9999,1000,"race3").setOrigin(0).setScale(.2).setScrollFactor(0).setDepth(2);
@@ -36,7 +45,7 @@ class preBridge extends Phaser.Scene{
                 this.time.addEvent({
                   delay: 4000,
                   callback:() =>{
-                    this.scene.start("bridge")
+                    this.scene.start("preBridge2");
                   }
                 })
               }

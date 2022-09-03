@@ -5,6 +5,7 @@ class tavern extends Phaser.Scene {
   };
   preload() {};
   create() {
+    money = parseInt(localStorage.getItem("money"));
     this.emitter = EventDispatcher.getInstance();
     this.gamePad = new GamePad({
       scene: this
@@ -72,7 +73,7 @@ class tavern extends Phaser.Scene {
     pickNpc();
     this.textBox = this.physics.add.sprite(600, 425, "quoteBox").setScale(10).setDepth(99).setScrollFactor(0).setInteractive().setVisible(false);
     this.textBox.alpha = .8;
-    this.text = this.add.text(325, 335, "", {fontFamily: "litebulb", color: "black", fontSize: "33px"}).setDepth(100).setScrollFactor(0).setInteractive();
+    this.text = this.add.text(325, 350, "", {fontFamily: "litebulb", color: "black", fontSize: "33px"}).setDepth(100).setScrollFactor(0).setInteractive();
     //Card playing guys
     var npcSprite1 = this.physics.add.sprite(8.25 * 70, 7.5 * 70, npcName).setScale(1.5).setDepth(2.01).setInteractive();
     this.time.addEvent({delay: 750,callback:() =>{if (this.x == 0){npcSprite1.scaleY = 1.47;this.x--;npcSprite1.y += 2.8125;}else{npcSprite1.scaleY = 1.5;this.x++;npcSprite1.y -= 2.8125;}}, loop: true});

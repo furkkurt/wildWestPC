@@ -4,17 +4,26 @@ class preTrain extends Phaser.Scene {
   };
   create() {
     this.sound.stopAll();
-    this.sound.play("Tequila", {
+    this.sound.play("crickets", {
       loop: true,
       volume: .15
     });  
     
-    this.filter = this.add.sprite(0,0,"nightFilter").setScale(999).setDepth(998).setScrollFactor(0);
-    this.filter.alpha = .5;
+    this.filter = this.add.sprite(0,0,"blackFilter").setScale(999).setDepth(999).setScrollFactor(0);
+    this.filter.alpha = 1;
+    this.time.addEvent({
+      delay: 50,
+      callback:() =>{
+        this.filter.alpha -= .01;
+      },repeat: 60
+    });
+
+    this.nightFilter = this.add.sprite(0,0,"nightFilter").setScale(999).setDepth(998).setScrollFactor(0);
+    this.nightFilter.alpha = .5;
     
     this.textBox = this.physics.add.sprite(245, 425, "quoteBox").setScale(12.2).setDepth(999).setScrollFactor(0)
     this.textBox.alpha = .8;
-    this.text = this.add.text(-120, 350, "Hey you! I've heard you're lookin' for Mad Hat.\nYou are looking in wrong town tho, Mad Hat Bran\nis in the Branacle Town, the next train heads there.\nGo avenge that jack*ss for he murdered my son!", {fontFamily: "litebulb", color: "black", fontSize: "28px"}).setDepth(999).setScrollFactor(0);
+    this.text = this.add.text(-130, 360, "Hey you! I've heard you're lookin' for Mad Hat.\nYou are looking in wrong town tho, Mad Hat Bran\nis in the Branacle Town, the next train heads there.\nGo avenge that jack*ss for he murdered my son!", {fontFamily: "litebulb", color: "black", fontSize: "27px"}).setDepth(999).setScrollFactor(0);
     
     const map = this.make.tilemap({
       key: "map1",
@@ -41,7 +50,35 @@ class preTrain extends Phaser.Scene {
     this.guy.flipX = true;
 
     this.time.addEvent({
-      delay: 10000,
+      delay: 8000,
+      callback:() =>{
+        this.guy.flipX = false;
+        this.time.addEvent({
+          delay: 1000,
+          callback:() =>{
+            this.guy.play("darkHorseWalk");
+            this.guy.setVelocityX(200);
+            this.sound.play("walkOnSand");
+          }
+        })
+      }
+    })
+
+    this.time.addEvent({
+      delay: 9000,
+      callback:() =>{
+        this.filter.setDepth(1000);
+        this.time.addEvent({
+          delay: 50,
+          callback:() =>{
+            this.filter.alpha += .01;
+          },repeat: 100
+        });
+      }
+    })
+
+    this.time.addEvent({
+      delay: 12000,
       callback:() =>{
         this.scene.start("preTrain2");
       }

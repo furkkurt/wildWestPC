@@ -9,6 +9,11 @@ class ridersChase extends Phaser.Scene{
     const mid = this.add.tileSprite(0,-25,9999,1000,"race2").setOrigin(0).setScale(.2).setScrollFactor(0).setDepth(2);
     const close = this.add.tileSprite(0,-25,9999,1000,"race1").setOrigin(0).setScale(.2).setScrollFactor(0).setDepth(2);
     const court = this.add.tileSprite(0,100,9999,400,"barn").setOrigin(0).setScrollFactor(0);
+    
+    this.ranger = this.sound.add("loneRanger", {startTime: 9999});
+    if(localStorage.getItem("location") == "ridersChase")
+      this.ranger.play();
+    localStorage.setItem("location", "ridersChase");
 
     this.move = this.time.addEvent({
       delay: 20,
@@ -21,7 +26,7 @@ class ridersChase extends Phaser.Scene{
         court.x -= 4;
       }, loop: true
     });
-
+    
     this.reset = this.time.addEvent({
       delay: 25000,
       callback:() =>{
@@ -54,9 +59,9 @@ class ridersChase extends Phaser.Scene{
     this.bullet1.setVelocityX(1000);
     this.bullet2.setVelocityX(1000);
     this.bullet3.setVelocityX(1000);
-    this.physics.add.collider(this.player, this.bullet1, () => {localStorage.clear(); window.location.reload()});
-    this.physics.add.collider(this.player, this.bullet2, () => {localStorage.clear(); window.location.reload()});
-    this.physics.add.collider(this.player, this.bullet3, () => {localStorage.clear(); window.location.reload()});
+    this.physics.add.collider(this.player, this.bullet1, () => {window.location.reload()});
+    this.physics.add.collider(this.player, this.bullet2, () => {window.location.reload()});
+    this.physics.add.collider(this.player, this.bullet3, () => {window.location.reload()});
 
     this.shootin = this.time.addEvent({
       delay: 2000,
@@ -130,6 +135,7 @@ class ridersChase extends Phaser.Scene{
           delay: 8000,
           callback:() =>{
             localStorage.setItem("progress", parseInt(localStorage.getItem("progress"))+1);
+            localStorage.setItem("chased", true);
             localStorage.setItem("location", "town");
             window.location.reload();
           }

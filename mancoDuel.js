@@ -1,8 +1,9 @@
 class mancoDuel extends Phaser.Scene{
-  constructor(){
+ constructor(){
     super("mancoDuel")
   }
   create(){
+    localStorage.setItem("location", "mancoDuel");
     const sky = this.add.tileSprite(0,-120,5000,1000,"sky").setOrigin(0).setScale(.2).setScrollFactor(0);
     this.time.addEvent({
       delay: 25,
@@ -19,7 +20,7 @@ class mancoDuel extends Phaser.Scene{
     this.player = this.physics.add.sprite(100,300,"player").setDepth(9).setOrigin(0);
     this.enemy = this.physics.add.sprite(700, 350, "manco").setDepth(9);
     this.enemy.flipX = true;
-    this.text = this.add.text(300,-30,"Ready",{fontFamily:"litebulb", fontSize:"96px", color:"black"});
+    this.text = this.add.text(300,30,"Ready",{fontFamily:"litebulb", fontSize:"48px", color:"black"});
     this.time.addEvent({
       delay: 1000,
       callback:() =>{
@@ -56,7 +57,7 @@ class mancoDuel extends Phaser.Scene{
             this.delay += 100
           },loop: true
         })
-        this.rivalDelay = Math.floor(Math.random()*10) * 100;
+        this.rivalDelay = Math.floor(Math.random()*10) * 50;
         this.text.setText("Shoot!");
         this.shoot.on("pointerdown", () => {
           if(this.early == false)
@@ -69,7 +70,7 @@ class mancoDuel extends Phaser.Scene{
           if(this.delay > this.rivalDelay){
             //die
             localStorage.clear();
-            this.lost = this.add.text(300,-30,"You lost.", {fontFamily: "litebulb", fontSize: "96px", color: "black"});
+            this.lost = this.add.text(300,30,"You lost.", {fontFamily: "litebulb", fontSize: "48px", color: "black"});
             this.time.addEvent({delay: 1000,callback:() =>{this.player.setRotation(1.57); this.player.x+=140; this.player.y += 90; this.player.play("playerIdle")}});
             this.time.addEvent({
               delay: 2000,
@@ -104,8 +105,8 @@ class mancoDuel extends Phaser.Scene{
           else if(this.delay < this.rivalDelay){
             this.shoot.setVisible(false);
             this.loot = (Math.floor(Math.random() * 5) + 1) * 20;
-            this.add.text(300,-30,"You win.", {fontFamily: "litebulb", fontSize: "96px", color: "black"}); 
-            this.add.text(230, 60,"   You looted "+this.loot+" bucks\nfrom this slow cowboy.", {fontFamily: "litebulb", fontSize: "64px", color: "yellow"}); 
+            this.add.text(300,0,"You win.", {fontFamily: "litebulb", fontSize: "48px", color: "black"}); 
+            this.add.text(230, 50,"   You looted "+this.loot+" bucks\nfrom this slow cowboy.", {fontFamily: "litebulb", fontSize: "32px", color: "yellow"}); 
 
             this.time.addEvent({delay: 1000,callback:() =>{this.enemy.setRotation(-1.57); this.enemy.x-=50; this.enemy.y +=50; this.enemy.play(this.enemyName + "Idle")}});
             this.filter = this.add.sprite(150,420,"redFilter").setOrigin(0).setDepth(99);
@@ -138,11 +139,16 @@ class mancoDuel extends Phaser.Scene{
                       callback:() =>{
                         this.textBox = this.physics.add.sprite(430, 350, "quoteBox").setScale(7).setDepth(103).setScrollFactor(0);
                         this.textBox.alpha = .8;
-                        this.text = this.add.text(225, 282, "How!?\n...", {fontFamily: "litebulb", color: "black", fontSize: "48px"}).setDepth(104).setScrollFactor(0);
+                        this.text = this.add.text(225, 300, "How!?\n...", {fontFamily: "litebulb", color: "black", fontSize: "24px"}).setDepth(104).setScrollFactor(0);
                         this.time.addEvent({
                           delay: 2000,
                           callback:() =>{
+                            localStorage.setItem("duelled", "true");
+                            let preMoney = localStorage.getItem("money");
+                            let postMoney = parseInt(preMoney) + this.loot;
+                            localStorage.setItem("money", postMoney);
                             localStorage.setItem("location", "town"); 
+                            localStorage.setItem("progress", parseInt(localStorage.getItem("progress"))+1);
                             window.location.reload()
                           }
                         })
@@ -155,7 +161,7 @@ class mancoDuel extends Phaser.Scene{
           }
           else{
             this.shoot.setVisible(false);
-            this.add.text(300,-30,"Tie.", {fontFamily: "litebulb", fontSize: "96px", color: "black"}); 
+            this.add.text(300,-30,"Tie.", {fontFamily: "litebulb", fontSize: "48px", color: "black"}); 
             
             localStorage.clear();
             this.time.addEvent({delay: 1000,callback:() =>{this.player.setRotation(1.57); this.player.x+=140; this.player.y += 90; this.player.play("playerIdle")}});

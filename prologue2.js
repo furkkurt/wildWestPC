@@ -11,7 +11,7 @@ class prologue2 extends Phaser.Scene {
       callback:() =>{
         this.filter3.alpha -= .01;
       },repeat: 100
-    })
+    });
     this.emitter = EventDispatcher.getInstance();
     const map = this.make.tilemap({
       key: "home",
@@ -44,7 +44,7 @@ class prologue2 extends Phaser.Scene {
     
     this.textBox = this.physics.add.sprite(650, 440, "quoteBox").setScale(9).setDepth(101).setScrollFactor(0).setVisible(false);
     this.textBox.alpha = .8;
-    this.text = this.add.text(400, 360, "", {fontFamily: "litebulb", color: "black", fontSize: "23px"}).setDepth(102).setScrollFactor(0);
+    this.text = this.add.text(400, 380, "", {fontFamily: "litebulb", color: "black", fontSize: "23px"}).setDepth(102).setScrollFactor(0);
     
     this.madHatBran = this.physics.add.sprite(11 * 70, 2.5 * 70, "bran").setScale(1.5).setDepth(2.01).setVisible(false);
     this.father = this.physics.add.sprite(11 * 70, 4 * 70, "father").setScale(1.5).setDepth(2.01).setVisible(false);

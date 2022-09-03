@@ -32,8 +32,8 @@ class bottleShootin extends Phaser.Scene{
     this.classD = [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8];
     this.classE = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     this.classF = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-    this.timeText = this.add.text(750,350,this.seconds,{fontFamily:"litebulb", fontSize:"48px", color:"black"});
-    this.bottleText = this.add.text(750,325,this.bottles,{fontFamily:"litebulb", fontSize:"48px", color:"brown"});
+    this.timeText = this.add.text(750,350,this.seconds,{fontFamily:"litebulb", fontSize:"32px", color:"black"});
+    this.bottleText = this.add.text(750,325,this.bottles,{fontFamily:"litebulb", fontSize:"32px", color:"brown"});
     this.time.addEvent({
       delay: 1000,
       callback:() =>{
@@ -47,7 +47,7 @@ class bottleShootin extends Phaser.Scene{
           this.time.addEvent({
             delay: 1000,
             callback:() =>{
-              this.add.text(200,200,"You shot " + this.bottles + " bottles.", {fontFamily: "litebulb", fontSize: "64px", color: "black"});
+              this.add.text(200,200,"You shot " + this.bottles + " bottles.", {fontFamily: "litebulb", fontSize: "32px", color: "black"});
             }
           });
           if(this.bottles > 60)
@@ -70,28 +70,30 @@ class bottleShootin extends Phaser.Scene{
           this.time.addEvent({
             delay: 3000,
             callback:() =>{
-              this.add.text(200,250,"Your opponent shot " + this.rivalBottles + " bottles.", {fontFamily: "litebulb", fontSize: "64px", color: "black"});
+              this.add.text(200,250,"Your opponent shot " + this.rivalBottles + " bottles.", {fontFamily: "litebulb", fontSize: "32px", color: "black"});
             }
           });
           this.time.addEvent({
             delay: 4000,
             callback:() =>{
               if (this.rivalBottles > this.bottles){
-                this.add.text(200,300,"You lost.", {fontFamily: "litebulb", fontSize: "64px", color: "black"});
+                this.add.text(200,300,"You lost.", {fontFamily: "litebulb", fontSize: "32px", color: "black"});
                 this.time.addEvent({
                   delay: 2000,
                   callback:() =>{
                     localStorage.setItem("location", "town"); 
                     this.scene.start("town");
-                  }
-               });
-              this.currentMoney = parseInt(parseInt(localStorage.getItem("money") - 25));
-              localStorage.setItem("money", this.currentMoney);
+                 }
+              });
+              let preMoney = localStorage.getItem("money");
+              let postMoney = parseInt(preMoney) - 25;
+              localStorage.setItem("money", postMoney);
+
               if (localStorage.getItem("money") <= 0)
                 localStorage.setItem("money", 0);
               }
               else if (this.rivalBottles < this.bottles){
-                this.add.text(200,300,"You win.", {fontFamily: "litebulb", fontSize: "64px", color: "black"}); 
+                this.add.text(200,300,"You win.", {fontFamily: "litebulb", fontSize: "32px", color: "black"}); 
                 this.time.addEvent({
                   delay: 2000,
                   callback:() =>{
@@ -99,12 +101,15 @@ class bottleShootin extends Phaser.Scene{
                     localStorage.setItem("location", "town"); 
                     this.scene.start("town");
                   }
-                });
-                this.currentMoney = parseInt(parseInt(localStorage.getItem("money") + 25));
-                localStorage.setItem("money", this.currentMoney);
+              });
+
+              let preMoney = localStorage.getItem("money");
+              let postMoney = parseInt(preMoney) + 25;
+              localStorage.setItem("money", postMoney);
+
               }
               else{
-                this.add.text(200,300,"Tie.", {fontFamily: "litebulb", fontSize: "64px", color: "black"}); 
+                this.add.text(200,300,"Tie.", {fontFamily: "litebulb", fontSize: "32px", color: "black"}); 
                 this.time.addEvent({
                   delay: 2000,
                   callback:() =>{

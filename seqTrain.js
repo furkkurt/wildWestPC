@@ -3,6 +3,15 @@ class seqTrain extends Phaser.Scene{
     super("seqTrain")
   }
   create(){
+    this.filter1 = this.add.sprite(0,0,"blackFilter").setScale(999).setDepth(999).setScrollFactor(0);
+    this.filter1.alpha = 1;
+    this.time.addEvent({
+      delay: 50,
+      callback:() =>{
+        this.filter1.alpha -= .01;
+      },repeat: 100
+    });
+
     this.sound.stopAll();
     this.sound.play("crickets");
     const sky = this.add.tileSprite(0,-50,5000,300,"nightSky").setOrigin(0).setScale(.4).setScrollFactor(0).setDepth(2);
@@ -28,15 +37,28 @@ class seqTrain extends Phaser.Scene{
 
     this.textBox = this.physics.add.sprite(550, 375, "quoteBox").setScale(8).setDepth(999).setScrollFactor(0).setVisible(false);
     this.textBox.alpha = .8;
-    this.text = this.add.text(310, 320, "", {fontFamily: "litebulb", color: "black", fontSize: "22px"}).setDepth(999).setScrollFactor(0);
+    this.text = this.add.text(310, 330, "", {fontFamily: "litebulb", color: "black", fontSize: "20px"}).setDepth(999).setScrollFactor(0);
 
     this.time.addEvent({
-      delay: 2000,
+      delay: 3000,
       callback:() =>{
         this.textBox.setVisible(true);
         this.text.setText("Looks like the track is broken. You'll have to\nwalk the rest of the way, gentlemen.\nBarnacle Town is about 5 miles to east,\nright after you cross the canyon.");
+
         this.time.addEvent({
           delay: 8000,
+          callback:() =>{
+            this.time.addEvent({
+                delay: 20,
+                callback:() =>{
+                  this.filter1.alpha += .01;
+                  this.filter1.setDepth(1000);
+                },repeat: 100
+              });
+          }
+        })
+        this.time.addEvent({
+          delay: 10000,
           callback:() =>{
             this.scene.start("preBridge");
           }

@@ -1,0 +1,64 @@
+{ "frames": {
+   "1": {
+    "frame": { "x": 0, "y": 0, "w": 42, "h": 117 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 42, "h": 117 },
+    "sourceSize": { "w": 42, "h": 117 },
+    "duration": 100
+   },
+   "2": {
+    "frame": { "x": 42, "y": 0, "w": 42, "h": 117 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 42, "h": 117 },
+    "sourceSize": { "w": 42, "h": 117 },
+    "duration": 100
+   },
+   "3": {
+    "frame": { "x": 84, "y": 0, "w": 42, "h": 117 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 42, "h": 117 },
+    "sourceSize": { "w": 42, "h": 117 },
+    "duration": 100
+   },
+   "4": {
+    "frame": { "x": 126, "y": 0, "w": 42, "h": 117 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 42, "h": 117 },
+    "sourceSize": { "w": 42, "h": 117 },
+    "duration": 100
+   },
+   "5": {
+    "frame": { "x": 168, "y": 0, "w": 42, "h": 117 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 42, "h": 117 },
+    "sourceSize": { "w": 42, "h": 117 },
+    "duration": 100
+   },   
+   "6": {
+    "frame": { "x": 210, "y": 0, "w": 42, "h": 117 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 42, "h": 117 },
+    "sourceSize": { "w": 42, "h": 117 },
+    "duration": 100
+   }
+ },
+ "meta": {
+  "app": "https://github.com/LibreSprite/LibreSprite/",
+  "version": "1.0",
+  "image": "/home/furkan/Documents/projects/phaser/wildWest/assets/hickok.png",
+  "format": "RGBA8888",
+  "size": { "w": 252, "h": 117 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ]
+ }
+}

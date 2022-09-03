@@ -4,27 +4,27 @@ class blackjack extends Phaser.Scene{
   }
   create(){
     this.add.sprite(-50,0,"table").setOrigin(0).setScale(2);
-    this.hitBut = this.add.sprite(360,340,"nightFilter").setInteractive().setOrigin(0).setDepth(9);
+    this.hitBut = this.add.sprite(360,320,"nightFilter").setInteractive().setOrigin(0).setDepth(9);
     this.hitBut.scaleX = 8; this.hitBut.scaleY = 4; this.hitBut.alpha = .01;
-    this.hitText = this.add.text(370,320,"hit",{fontFamily:"litebulb", fontSize:"64px", color:"red"});
-    this.standBut = this.add.sprite(345,375,"nightFilter").setInteractive().setOrigin(0).setDepth(9);
+    this.hitText = this.add.text(370,320,"hit",{fontFamily:"litebulb", fontSize:"32px", color:"red"});
+    this.standBut = this.add.sprite(345,360,"nightFilter").setInteractive().setOrigin(0).setDepth(9);
     this.standBut.scaleX = 13; this.standBut.scaleY = 4; this.standBut.alpha = .01;
-    this.standText = this.add.text(350,355,"Stand",{fontFamily:"litebulb", fontSize:"64px", color:"black"});
+    this.standText = this.add.text(350,355,"Stand",{fontFamily:"litebulb", fontSize:"32px", color:"black"});
     this.hitBut.on("pointerdown", () => {this.hit(this.playerHand)});
     this.standBut.on("pointerdown", () => {this.end()});
-    this.moneyText = this.add.text(10, -10, "Money: " + localStorage.getItem("money"), {color: "black", fontFamily: "litebulb", fontSize: "64px"}).setDepth(99).setOrigin(0);
+    this.moneyText = this.add.text(10, 0, "Money: " + localStorage.getItem("money"), {color: "black", fontFamily: "litebulb", fontSize: "32px"}).setDepth(99).setOrigin(0);
 
-    this.againBut = this.add.sprite(345,340,"nightFilter").setInteractive().setOrigin(0).setDepth(9).setVisible(false);
-    this.againBut.scaleX = 20; this.againBut.scaleY = 4; this.againBut.alpha = .01;
-    this.againText = this.add.text(350,315,"play again",{fontFamily:"litebulb", fontSize:"64px", color:"red"}).setVisible(false);
-    this.quitBut = this.add.sprite(375,380,"nightFilter").setInteractive().setOrigin(0).setDepth(9).setVisible(false);
+    this.againBut = this.add.sprite(355,325,"nightFilter").setInteractive().setOrigin(0).setDepth(9).setVisible(false);
+    this.againBut.scaleX = 22; this.againBut.scaleY = 4; this.againBut.alpha = .01;
+    this.againText = this.add.text(350,315,"play again",{fontFamily:"litebulb", fontSize:"32px", color:"red"}).setVisible(false);
+    this.quitBut = this.add.sprite(370,365,"nightFilter").setInteractive().setOrigin(0).setDepth(9).setVisible(false);
     this.quitBut.scaleX = 14; this.quitBut.scaleY = 4; this.quitBut.alpha = .01;
-    this.quitText = this.add.text(365,355,"get up",{fontFamily:"litebulb", fontSize:"64px", color:"black"}).setVisible(false);
+    this.quitText = this.add.text(365,355,"get up",{fontFamily:"litebulb", fontSize:"32px", color:"black"}).setVisible(false);
     this.againBut.on("pointerdown", () => {
       if(parseInt(localStorage.getItem("money")) >= 10)
         this.scene.start("blackjack");
       else
-        this.add.text(230,400,"You need at least 10 bucks to play.", {fontFamily:"litebulb", fontSize:"48px", color: "red"});
+        this.add.text(230,400,"You need at least 10 bucks to play.", {fontFamily:"litebulb", fontSize:"24px", color: "red"});
     });
     this.quitBut.on("pointerdown", () => {this.scene.start("tavern")});
     
@@ -60,6 +60,23 @@ class blackjack extends Phaser.Scene{
       this.card = this.symbol + this.num;
     }
     deck.push(this.card);
+    if((deck.includes("cA") && deck.includes("sA")) && (deck.includes("c8") && deck.includes("s8"))){
+      this.againBut.visible = this.hitBut.visible = this.standBut.visible = this.quitBut.visible = this.hitText.visible = this.standText.visible = this.quitText.visible = this.againText.visible = false;
+      this.filter = this.add.sprite(0,0,"blackFilter").setOrigin(0).setScale(100).setDepth(999);
+      this.filter.alpha = 0;
+      this.time.addEvent({
+        delay: 10,
+        callback:() =>{
+          this.filter.alpha += .01;
+        },repeat: 100
+      });
+      this.time.addEvent({
+        delay: 1000,
+        callback:() =>{
+          this.scene.start("againstDead");
+        }
+      })
+    }
 
     if(this.numbers.indexOf(this.num)<9)
       this.value = parseInt(this.num);
@@ -109,18 +126,18 @@ class blackjack extends Phaser.Scene{
       this.add.sprite(500,185+((this.botHand2.indexOf(this.botHand2[i])) * 20),this.botHand2[i]).setOrigin(0).setDepth(9).setScale(.8).setRotation(-1.57);
     for(let i = 0; i<=this.botHand3.length; i++)
       this.add.sprite(350+((this.botHand3.indexOf(this.botHand3[i])) * 20),25,this.botHand3[i]).setOrigin(0).setDepth(9).setScale(.8);
-    this.add.text(305,130,this.botSum1, {fontFamily:"litebulb",fontSize:"48px", color:"black"});
-    this.add.text(410,125,this.botSum3, {fontFamily:"litebulb",fontSize:"48px", color:"black"});
-    this.add.text(460,130,this.botSum2, {fontFamily:"litebulb",fontSize:"48px", color:"black"});
-    this.add.text(360,135,this.playerSum, {fontFamily:"litebulb",fontSize:"48px", color:"black"});
+    this.add.text(305,140,this.botSum1, {fontFamily:"litebulb",fontSize:"24px", color:"black"});
+    this.add.text(410,135,this.botSum3, {fontFamily:"litebulb",fontSize:"24px", color:"black"});
+    this.add.text(460,140,this.botSum2, {fontFamily:"litebulb",fontSize:"24px", color:"black"});
+    this.add.text(360,145,this.playerSum, {fontFamily:"litebulb",fontSize:"24px", color:"black"});
 
     if(this.playerSum == 21){
-      this.add.text(360, 275, "You win!", {fontFamily:"litebulb", fontSize:"64px"});
-      this.newMoney = parseInt(parseInt(localStorage.getItem("money")) + 40);
+      this.add.text(360, 275, "You win!", {fontFamily:"litebulb", fontSize:"32px"}).setDepth(999);
+      this.newMoney = parseInt(parseInt(localStorage.getItem("money")) + 20);
         localStorage.setItem("money", this.newMoney);
     }
     else if(this.playerSum>21){
-      this.add.text(360, 275, "You lose...", {fontFamily:"litebulb", fontSize:"64px"});
+      this.add.text(360, 275, "You lose...", {fontFamily:"litebulb", fontSize:"32px"}).setDepth(999);
       this.newMoney = parseInt(parseInt(localStorage.getItem("money")) - 10);
       if (this.newMoney < 0)
         this.newMoney = 0;
@@ -136,19 +153,19 @@ class blackjack extends Phaser.Scene{
       }
       console.log(this.sums)
       if(this.sums[0] == this.playerSum && this.sums[1] != this.playerSum){
-        this.add.text(360, 275, "You win!", {fontFamily:"litebulb", fontSize:"64px"});
+        this.add.text(360, 275, "You win!", {fontFamily:"litebulb", fontSize:"32px"}).setDepth(999);
         this.newMoney = parseInt(parseInt(localStorage.getItem("money")) + 40);
           localStorage.setItem("money", this.newMoney);
       }
       else if(this.sums[0] > this.playerSum){
-        this.add.text(360, 275, "You lose...", {fontFamily:"litebulb", fontSize:"64px"});
+        this.add.text(360, 275, "You lose...", {fontFamily:"litebulb", fontSize:"32px"}).setDepth(999);
         this.newMoney = parseInt(localStorage.getItem("money") - 10);
         if (this.newMoney < 0)
           this.newMoney = 0;
         localStorage.setItem("money", this.newMoney);
       }
       else{
-        this.add.text(360, 275, "Tie!", {fontFamily:"litebulb", fontSize:"64px"});
+        this.add.text(360, 275, "Tie!", {fontFamily:"litebulb", fontSize:"32px"}).setDepth(999);
       }
     }
     this.hitBut.visible = this.standBut.visible = this.hitText.visible = this.standText.visible = false;

@@ -11,10 +11,25 @@ class preRidersChase extends Phaser.Scene {
       horse = "White";
     
     this.sound.stopAll();
-    this.sound.play("Tequila", {
+    this.sound.play("doorOpen");
+    this.sound.play("loneRanger", {
       loop: true,
-      volume: .15
+      volume: .75
     });  
+    
+    this.filter = this.add.sprite(0,0,"blackFilter").setOrigin(0).setScale(1000).setDepth(9999);
+    this.filter.alpha = 1;
+    this.time.addEvent({
+      delay: 1000,
+      callback:() =>{
+        this.time.addEvent({
+          delay: 50,
+          callback:() =>{
+            this.filter.alpha -= .01;
+          }, repeat: 100
+        });
+      }
+    })
     
     this.textBox = this.physics.add.sprite(245, 425, "quoteBox").setScale(12.2).setDepth(99).setScrollFactor(0)
     this.textBox.alpha = .8;
@@ -51,7 +66,7 @@ class preRidersChase extends Phaser.Scene {
     upperLayer1.setCollisionByExclusion([-1]);
 
     this.time.addEvent({
-      delay: 7000,
+      delay: 9000,
       callback:() =>{
         this.text.setVisible(false);
         this.textBox.setVisible(false);
@@ -75,8 +90,9 @@ class preRidersChase extends Phaser.Scene {
                 this.time.addEvent({
                   delay: 7000,
                   callback:() =>{
-                    localStorage.setItem("location", "ridersChase");
-                    window.location.reload();
+                    //localStorage.setItem("location", "ridersChase");
+                    //window.location.reload();
+                    this.scene.start("ridersChase")
                   }
                 })
               }

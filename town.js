@@ -9,8 +9,8 @@ class town extends Phaser.Scene {
   create() {
     if(localStorage.getItem("progress") == undefined)
       localStorage.setItem("progress", 0);
-    if(localStorage.getItem("progress") == 0 && localStorage.getItem("hasHorse") != undefined)
-      this.scene.start("ridersChase");
+    //if(localStorage.getItem("chased") == undefined  && localStorage.getItem("hasHorse") != undefined)
+      //this.scene.start("ridersChase");
     if(localStorage.getItem("progress") == 3 && localStorage.getItem("hasHorse") != undefined)
       this.scene.start("bridge");
     if((localStorage.getItem("duelled") && localStorage.getItem("bottleShooted")) && (localStorage.getItem("horseRaced") && localStorage.getItem("bountyHunted")))
@@ -38,7 +38,7 @@ class town extends Phaser.Scene {
       speed = 500;
       horse = "White";
     }
-    this.moneyText = this.add.text(-120, -80, "Money: " + money, {color: "black", fontFamily: "litebulb", fontSize: "28px"}).setDepth(100).setScrollFactor(0);
+    this.moneyText = this.add.text(-120, -70, "Money: " + money, {color: "black", fontFamily: "litebulb", fontSize: "28px"}).setDepth(100).setScrollFactor(0);
     this.emitter = EventDispatcher.getInstance();
     this.gamePad = new GamePad({
       scene: this
@@ -53,7 +53,7 @@ class town extends Phaser.Scene {
     });  
     this.textBox = this.physics.add.sprite(540, 375, "quoteBox").setScale(12.2).setDepth(99).setScrollFactor(0).setInteractive().setVisible(false);
     this.textBox.alpha = .8;
-    this.text = this.add.text(175, 275, "", {fontFamily: "litebulb", color: "black", fontSize: "32px"}).setDepth(100).setScrollFactor(0).setInteractive();
+    this.text = this.add.text(175, 290, "", {fontFamily: "litebulb", color: "black", fontSize: "32px"}).setDepth(100).setScrollFactor(0).setInteractive();
     this.textBox.on("pointerdown", () => {
       if(localStorage.getItem("location") == "duello")
         window.location.reload();
@@ -65,7 +65,7 @@ class town extends Phaser.Scene {
       }
     });
     this.text.on("pointerdown", () => {
-      if(localStorage.getItem("money") >= 25)
+      if(localStorage.getItem("money") >= 25 || localStorage.getItem("location") == "duello")
         window.location.reload();
       else{
         this.text.setText("You need at least 25 bucks.");
@@ -88,6 +88,7 @@ class town extends Phaser.Scene {
     this.player = this.physics.add.sprite(75 * 70, 75 * 70 + 1, "player").setScale(1.5).setDepth(2.01);
     this.player.play("player"+horse+"Idle");
     this.player.body.setSize(this.player.width / 1.5, this.player.height / 2);
+    this.player.body.setOffset(0,64);
     if (horse != "")
       this.player.body.setSize(this.player.width / 1.25, this.player.height / 2);
     this.player.setImmovable();
@@ -263,6 +264,7 @@ class town extends Phaser.Scene {
     this.barnEnteranceText = this.add.text(4825, 5325, "Enter", {fontFamily: "litebulb", fontSize: "28px", color: "black"}).setVisible(false);
     this.barnEnterance = this.physics.add.sprite(4820,5250).setScale(3).setOrigin(0).setInteractive().setDepth(99);
     this.barnEnterance.on("pointerdown", () => {
+      this.sound.play("doorOpen");
       this.scene.start("barn");
     });
 

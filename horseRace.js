@@ -43,7 +43,13 @@ class horseRace extends Phaser.Scene{
         this.physics.add.collider(this.player, this.rock1, () => {
           localStorage.setItem("money", parseInt(parseInt(localStorage.getItem("money")) - 25));
           localStorage.setItem("location", "town");
-          this.scene.start("town");
+          this.sound.play("doorKick");
+          this.time.addEvent({
+            delay: 500,
+            callback:() =>{
+              this.scene.start("town");
+            }
+          })
         });        
         this.physics.add.collider(this.player, this.rock2, () => {
           localStorage.setItem("money", parseInt(parseInt(localStorage.getItem("money")) - 25));
