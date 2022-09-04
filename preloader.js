@@ -380,6 +380,6 @@ class preloader extends Phaser.Scene {
 		else if(localStorage.getItem("location") == "bridge")
 			this.scene.start("seqTrain");
 		else
-			this.scene.start("prolouge");
+			this.scene.start("prologue");
 	}
 }
